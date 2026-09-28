@@ -1,0 +1,64 @@
+:root {
+  --ink: #17262b;
+  --paper: #f6f8f7;
+  --muted: #55666b;
+  --line: #cfd9d6;
+  --accent: #0d6e6e;
+  --accent-dark: #094f4f;
+  --alert: #b3382a;
+  --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body { margin: 0; background: var(--paper); color: var(--ink); font: 1.0625rem/1.65 var(--sans); }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; background: #fff; padding: .5rem 1rem; z-index: 10; }
+
+.top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+       padding: 1rem clamp(1.25rem, 5vw, 4rem); position: sticky; top: 0; background: var(--paper);
+       border-bottom: 1px solid var(--line); z-index: 5; }
+.brand { font: 700 1.35rem var(--serif); color: var(--ink); text-decoration: none; }
+.top nav { display: flex; align-items: center; gap: 1.5rem; }
+.top nav a:not(.btn) { color: var(--ink); text-decoration: none; }
+.top nav a:not(.btn):hover { color: var(--accent); }
+
+.btn { display: inline-block; background: var(--accent); color: #fff; border: 0; border-radius: 4px;
+       padding: .85rem 1.5rem; font: 600 1rem var(--sans); text-decoration: none; cursor: pointer; }
+.btn:hover { background: var(--accent-dark); }
+.btn.small { padding: .5rem 1rem; font-size: .95rem; }
+
+main, .foot { padding-inline: clamp(1.25rem, 5vw, 4rem); }
+.hero { max-width: 62rem; padding-block: clamp(4rem, 12vw, 9rem); }
+.hero h1 { font: 700 clamp(2.5rem, 7vw, 5rem)/1.05 var(--serif); letter-spacing: -.02em; margin: 0 0 1.5rem; }
+.lead { font-size: 1.25rem; max-width: 38rem; color: var(--muted); margin: 0 0 2rem; }
+
+.block { padding-block: clamp(3rem, 8vw, 5.5rem); border-top: 1px solid var(--line); }
+.block h2 { font: 700 clamp(1.75rem, 4vw, 2.5rem)/1.15 var(--serif); margin: 0 0 1.5rem; }
+.split { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(2rem, 6vw, 5rem); }
+
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2.5rem; }
+.services article { border-left: 3px solid var(--accent); padding-left: 1.25rem; }
+.services h3 { font: 700 1.3rem var(--serif); margin: 0 0 .5rem; }
+.services p { margin: 0; color: var(--muted); }
+
+.steps { margin: 0; padding-left: 1.25rem; display: grid; gap: 1.25rem; max-width: 38rem; }
+
+form { display: grid; gap: .4rem; max-width: 34rem; }
+label { font-weight: 600; margin-top: .75rem; }
+input, textarea { width: 100%; padding: .75rem; border: 1px solid #8ea1a0; border-radius: 4px;
+                  background: #fff; font: inherit; color: inherit; }
+form .btn { justify-self: start; margin-top: 1.25rem; }
+.error { color: var(--alert); margin: 0; font-size: .95rem; }
+.notice { background: #e2f1ee; border-left: 4px solid var(--accent); padding: .9rem 1rem; margin: 0 0 1.5rem; }
+
+.foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+        padding-block: 2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
+.foot p { margin: 0; }
+
+@media (max-width: 760px) { .split { grid-template-columns: 1fr; } }

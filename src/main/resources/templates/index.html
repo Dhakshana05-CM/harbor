@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harbor &amp; Pine | Operations consulting for growing teams</title>
+  <meta name="description" content="Harbor &amp; Pine helps growing teams fix stalled processes, choose the right systems, and build habits that last.">
+  <link rel="stylesheet" th:href="@{/css/site.css}">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top">
+    <a class="brand" href="#top">Harbor &amp; Pine</a>
+    <nav aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a class="btn small" href="#contact">Get in touch</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <h1>Work should move.<br>We find where it stops.</h1>
+      <p class="lead">Harbor &amp; Pine is a small consultancy that helps growing teams fix stalled processes, pick the right tools, and make the change stick.</p>
+      <a class="btn" href="#contact">Book a free 30-minute call</a>
+    </section>
+
+    <section id="services" class="block">
+      <h2>What we do</h2>
+      <div class="services">
+        <article th:each="s : ${services}">
+          <h3 th:text="${s.title}">Service</h3>
+          <p th:text="${s.description}">Description</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="approach" class="block split">
+      <h2>How an engagement works</h2>
+      <ol class="steps">
+        <li><strong>Listen.</strong> We spend a week with your team before we suggest anything.</li>
+        <li><strong>Diagnose.</strong> You receive a plain-language report with the three changes that matter most.</li>
+        <li><strong>Implement.</strong> We stay until the changes are part of how your team works.</li>
+      </ol>
+    </section>
+
+    <section id="contact" class="block split">
+      <div>
+        <h2>Tell us what's stuck</h2>
+        <p>We reply within one business day.</p>
+      </div>
+
+      <div>
+        <p class="notice" role="status" th:if="${sent}">Message sent. We'll reply within one business day.</p>
+
+        <form th:action="@{/contact}" th:object="${contactForm}" method="post" novalidate>
+          <label for="name">Name</label>
+          <input id="name" type="text" th:field="*{name}" autocomplete="name">
+          <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+
+          <label for="email">Email</label>
+          <input id="email" type="email" th:field="*{email}" autocomplete="email">
+          <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+
+          <label for="message">What do you need help with?</label>
+          <textarea id="message" rows="5" th:field="*{message}"></textarea>
+          <p class="error" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></p>
+
+          <button class="btn" type="submit">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>&copy; <span th:text="${#dates.year(#dates.createNow())}">2026</span> Harbor &amp; Pine Consulting</p>
+    <p><a href="mailto:hello@harborpine.example">hello@harborpine.example</a></p>
+  </footer>
+</body>
+</html>
